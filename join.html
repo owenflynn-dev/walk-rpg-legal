@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join a Walk RPG raid</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+           background: #0b0e14; color: #f5f7ff; margin: 0; min-height: 100vh; display: flex; align-items: center;
+           justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; }
+    .card { max-width: 360px; }
+    h1 { font-size: 1.4rem; margin: 0 0 8px; }
+    p { color: #9aa3b8; line-height: 1.5; }
+    a.btn { display: block; margin: 18px 0 10px; padding: 14px; border-radius: 12px; background: #f6c945; color: #0b0e14;
+            font-weight: 800; text-decoration: none; font-size: 1.05rem; box-shadow: inset 0 -4px 0 rgba(0,0,0,.25); }
+    a.btn.off { background: #2a3040; color: #9aa3b8; box-shadow: none; }
+    a.store { color: #4dd0ff; }
+    .muted { font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>You're invited to a Walk RPG raid</h1>
+    <p>Open this in the app and you two are friends &mdash; your steps join the same weekly boss fight.</p>
+    <a class="btn" id="open" href="#">Open in Walk RPG</a>
+    <p class="muted">Don't have it yet?
+      <a class="store" href="https://apps.apple.com/app/id0000000000">App Store</a> &middot;
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.owenflynn.walkrpg">Google Play</a><br>
+      Then tap this link again.</p>
+  </div>
+  <script>
+    var t = new URLSearchParams(location.search).get('t') || '';
+    var a = document.getElementById('open');
+    if (/^[a-z2-7]{20}$/.test(t)) {
+      a.href = 'walkrpg://join?t=' + t;
+    } else {
+      a.textContent = 'This invite link is not valid';
+      a.className = 'btn off';
+      a.removeAttribute('href');
+    }
+  </script>
+</body>
+</html>
